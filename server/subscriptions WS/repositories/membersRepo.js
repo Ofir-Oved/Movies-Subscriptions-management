@@ -10,6 +10,11 @@ const getById = (id) => {//todo: see if i'm using all the functions
   return Member.findById(id);
 };
 
+// Get By APIid
+const getByAPIId = (apiId) => {//todo: see if i'm using all the functions
+  return Member.findOne(apiId);
+};
+
 // Create
 const addMember = (obj) => {
   const member = new Member(obj);
@@ -29,6 +34,7 @@ const deleteMember = (id) => {
 module.exports = {
   getAllMembers,
   getById,
+  getByAPIId,
   addMember,
   updateMember,
   deleteMember,
