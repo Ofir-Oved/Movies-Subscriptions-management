@@ -3,7 +3,7 @@ const subscriptionsService = require('../services/subscriptionsService');
 
 const router = express.Router();
 
-// Entry point: http://localhost:3000/subscriptions - see if correct
+// Entry point: http://localhost:5000/subscriptions - see if correct
 
 // Get All Subscriptions
 router.get('/', async (req, res) => {//todo: see if i'm using all the functions

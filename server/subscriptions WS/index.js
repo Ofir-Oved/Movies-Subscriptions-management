@@ -10,7 +10,7 @@ const { fetchAndStoreMembers } = require('./services/membersDataInitService');
 const { fetchAndStoreMovies } = require('./services/moviesDataInitService');
 
 const app = express();
-const PORT = 3000;
+const PORT = 5000;
 
 const startServer = async () => {
     try {

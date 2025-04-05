@@ -3,7 +3,7 @@ const membersService = require('../services/membersService');
 
 const router = express.Router();
 
-// Entry point: http://localhost:3000/members - see if correct
+// Entry point: http://localhost:5000/members - see if correct
 
 // Get All Members
 router.get('/', async (req, res) => {//todo: see if i'm using all the functions

@@ -1,60 +1,60 @@
 const express = require('express');
-const moviesService = require('../services/moviesService');
+const usersService = require('../services/usersService');
 
 const router = express.Router();
 
-// Entry point: http://localhost:5000/movies - see if correct
+// Entry point: http://localhost:3000/users - see if correct
 
-// Get All Movies
+// Get All Users
 router.get('/', async (req, res) => {//todo: see if i'm using all the functions
   try {
     const filters = req.query;//see if relevant
-    const movies = await moviesService.getAllMovies(filters);
-    res.json(movies);
+    const users = await usersService.getAllUsers(filters);
+    res.json(users);
   } catch (error) {
     res.json(error);
   }
 });
 
-// Get a movie By ID
+// Get a user By ID
 router.get('/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const movie = await moviesService.getById(id);
-    res.json(movie);
+    const user = await usersService.getById(id);
+    res.json(user);
   } catch (error) {
     res.json(error);
   }
 });
 
-// Add a new movie
+// Add a new user
 router.post('/', async (req, res) => {
   try {
     const obj = req.body;
-    const result = await moviesService.addMovie(obj);
+    const result = await usersService.addUser(obj);
     res.status(201).json(result);
   } catch (error) {
     res.status(500).json(error.message);
   }
 });
 
-// Update a movie
+// Update user
 router.patch('/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const obj = req.body;
-    const result = await moviesService.updateMovie(id, obj);
+    const result = await usersService.updateUser(id, obj);
     res.json(result);
   } catch (error) {
     res.json(error);
   }
 });
 
-// Delete movie
+// Delete user
 router.delete('/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const result = await moviesService.deleteMovie(id);
+    const result = await usersService.deleteUser(id);
     res.json(result);
   } catch (error) {
     res.json(error);

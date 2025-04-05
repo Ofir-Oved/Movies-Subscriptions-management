@@ -3,7 +3,7 @@ const moviesService = require('../services/moviesService');
 
 const router = express.Router();
 
-// Entry point: http://localhost:5000/movies - see if correct
+// Entry point: http://localhost:3000/movies - see if correct
 
 // Get All Movies
 router.get('/', async (req, res) => {//todo: see if i'm using all the functions
