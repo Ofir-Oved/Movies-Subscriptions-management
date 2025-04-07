@@ -10,10 +10,8 @@ import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import MuiCard from '@mui/material/Card';
 import { styled } from '@mui/material/styles';
-import ForgotPassword from './ForgotPassword';
-import AppTheme from './AppTheme';
-import ColorModeSelect from './ColorModeSelect';
-import { SitemarkIcon } from './CustomIcons';
+import AppTheme from './design/AppTheme';
+import { SitemarkIcon } from './design/CustomIcons';
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
@@ -58,10 +56,6 @@ const SignInContainer = styled(Stack)(({ theme }) => ({
 }));
 
 export default function SignIn(props) {
-  const [userNameError, setuserNameError] = React.useState(false);
-  const [userNameErrorMessage, setuserNameErrorMessage] = React.useState('');
-  const [passwordError, setPasswordError] = React.useState(false);
-  const [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -84,29 +78,10 @@ export default function SignIn(props) {
     });
   };
 
-  const validateInputs = () => {
-    const userName = document.getElementById('userName');
-    const password = document.getElementById('password');
-
-    let isValid = true;
-
-    if (!password.value || password.value.length < 6) {
-      setPasswordError(true);
-      setPasswordErrorMessage('Password must be at least 6 characters long.');
-      isValid = false;
-    } else {
-      setPasswordError(false);
-      setPasswordErrorMessage('');
-    }
-
-    return isValid;
-  };
-
   return (
     <AppTheme {...props}>
       <CssBaseline enableColorScheme />
       <SignInContainer direction="column" justifyContent="space-between">
-        <ColorModeSelect sx={{ position: 'fixed', top: '1rem', right: '1rem' }} />
         <Card variant="outlined">
         <Box display="flex" flexDirection="column" alignItems="flex-start" gap={2}>
             <SitemarkIcon />
@@ -132,8 +107,6 @@ export default function SignIn(props) {
             <FormControl>
               <FormLabel htmlFor="userName">User name</FormLabel>
               <TextField
-                error={userNameError}
-                helperText={userNameErrorMessage}
                 id="userName"
                 type="userName"
                 name="userName"
@@ -142,14 +115,12 @@ export default function SignIn(props) {
                 required
                 fullWidth
                 variant="outlined"
-                color={userNameError ? 'error' : 'primary'}
+                color='primary'
               />
             </FormControl>
             <FormControl>
-              <FormLabel htmlFor="password">Password</FormLabel>
+              <FormLabel>Password</FormLabel>
               <TextField
-                error={passwordError}
-                helperText={passwordErrorMessage}
                 name="password"
                 type="password"
                 id="password"
@@ -158,15 +129,13 @@ export default function SignIn(props) {
                 required
                 fullWidth
                 variant="outlined"
-                color={passwordError ? 'error' : 'primary'}
+                color='primary'
               />
             </FormControl>
-            <ForgotPassword open={open} handleClose={handleClose} />
             <Button
               type="submit"
               fullWidth
               variant="contained"
-              onClick={validateInputs}
             >
               Sign in
             </Button>

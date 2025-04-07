@@ -1,14 +1,11 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import VideocamIcon from '@mui/icons-material/Videocam';
+import cameraIcon from './film-movie-icon.png';
 
 export function SitemarkIcon() {
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-      {/* Use Material-UI's built-in icon */}
-      <VideocamIcon sx={{ fontSize: 32, color: 'black' }} />
-      
-      {/* Text beside the icon */}
+      <img src={cameraIcon} alt="Camera icon" style={{ width: 32, height: 32 }}/>
       <Box 
         component="span" 
         sx={{ 
