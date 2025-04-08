@@ -1,3 +1,4 @@
+import CreateAccount from "./createAccount"
 import MainPage from "./mainPage"
 import SignIn from "./SignIn"
 import {Routes, Route} from "react-router-dom"
@@ -10,6 +11,7 @@ function App() {
       <Routes>
         <Route path='/' element={<SignIn/>}/>
         <Route path='/main' element={<MainPage/>}/>
+        <Route path='/createAccount' element={<CreateAccount/>}/>
       </Routes>
     </>
   )

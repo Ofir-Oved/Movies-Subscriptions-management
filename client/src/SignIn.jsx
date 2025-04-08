@@ -57,45 +57,33 @@ const SignInContainer = styled(Stack)(({ theme }) => ({
 }));
 
 export default function SignIn(props) {
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
   const [userNameError, setUserNameError] = useState(false);
   const [userNameErrorMessage, setUserNameErrorMessage] = useState('');
   const [passwordError, setPasswordError] = useState(false);
   const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
-  const [open, setOpen] = useState(false);
   const navigate = useNavigate();
 
-  const enter = () => {
-
-
-  };
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
+  const handleAccountClick = () => {
+    navigate('/createAccount');
   };
 
   const handleSubmit = (event) => {
-    if (userNameError || passwordError) {
-      event.preventDefault();
-      return;
+    event.preventDefault();
+
+    const isValid = validateInputs(); 
+
+    if (isValid) {
+      navigate('/main');
     }
-    const data = new FormData(event.currentTarget);
-    console.log({
-      userName: data.get('userName'),
-      password: data.get('password'),
-    });
   };
 
   const validateInputs = () => {
-    const userName = document.getElementById('userName');
-    const password = document.getElementById('password');
 
     let isValid = true;
 
-    if (!userName.value) {//update************
+    if (!userName) {//update************
       setUserNameError(true);
       setUserNameErrorMessage('Username does not exist.');
       isValid = false;
@@ -104,7 +92,7 @@ export default function SignIn(props) {
       setUserNameErrorMessage('');
     }
 
-    if (!password.value) {//update************
+    if (!password) {//update************
       setPasswordError(true);
       setPasswordErrorMessage('Password is incorrect.');
       isValid = false;
@@ -147,6 +135,7 @@ export default function SignIn(props) {
               <TextField
                 error={userNameError}
                 helperText={userNameErrorMessage}
+                onChange={(e)=>setUserName(e.target.value)}
                 id="userName"
                 type="userName"
                 name="userName"
@@ -163,6 +152,7 @@ export default function SignIn(props) {
               <TextField
                 error={passwordError}
                 helperText={passwordErrorMessage}
+                onChange={(e)=>setPassword(e.target.value)}
                 name="password"
                 type="password"
                 id="password"
@@ -178,7 +168,6 @@ export default function SignIn(props) {
               type="submit"
               fullWidth
               variant="contained"
-              onClick={validateInputs}
             >
               Sign in
             </Button>
@@ -187,7 +176,7 @@ export default function SignIn(props) {
               <Link
                 component="button"
                 type="button"
-                onClick={handleClickOpen}
+                onClick={handleAccountClick}
                 variant="body2"
               >
                 Create Account
