@@ -1,4 +1,5 @@
-import * as React from 'react';
+import {useState} from "react";
+import {useNavigate} from "react-router-dom";
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -56,7 +57,17 @@ const SignInContainer = styled(Stack)(({ theme }) => ({
 }));
 
 export default function SignIn(props) {
-  const [open, setOpen] = React.useState(false);
+  const [userNameError, setUserNameError] = useState(false);
+  const [userNameErrorMessage, setUserNameErrorMessage] = useState('');
+  const [passwordError, setPasswordError] = useState(false);
+  const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
+  const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const enter = () => {
+
+
+  };
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -76,6 +87,33 @@ export default function SignIn(props) {
       userName: data.get('userName'),
       password: data.get('password'),
     });
+  };
+
+  const validateInputs = () => {
+    const userName = document.getElementById('userName');
+    const password = document.getElementById('password');
+
+    let isValid = true;
+
+    if (!userName.value) {//update************
+      setUserNameError(true);
+      setUserNameErrorMessage('Username does not exist.');
+      isValid = false;
+    } else {
+      setUserNameError(false);
+      setUserNameErrorMessage('');
+    }
+
+    if (!password.value) {//update************
+      setPasswordError(true);
+      setPasswordErrorMessage('Password is incorrect.');
+      isValid = false;
+    } else {
+      setPasswordError(false);
+      setPasswordErrorMessage('');
+    }
+
+    return isValid;
   };
 
   return (
@@ -105,8 +143,10 @@ export default function SignIn(props) {
             }}
           >
             <FormControl>
-              <FormLabel htmlFor="userName">User name</FormLabel>
+              <FormLabel htmlFor="userName">Username</FormLabel>
               <TextField
+                error={userNameError}
+                helperText={userNameErrorMessage}
                 id="userName"
                 type="userName"
                 name="userName"
@@ -115,12 +155,14 @@ export default function SignIn(props) {
                 required
                 fullWidth
                 variant="outlined"
-                color='primary'
+                color={userNameError ? 'error' : 'primary'}
               />
             </FormControl>
             <FormControl>
               <FormLabel>Password</FormLabel>
               <TextField
+                error={passwordError}
+                helperText={passwordErrorMessage}
                 name="password"
                 type="password"
                 id="password"
@@ -129,13 +171,14 @@ export default function SignIn(props) {
                 required
                 fullWidth
                 variant="outlined"
-                color='primary'
+                color={passwordError ? 'error' : 'primary'}
               />
             </FormControl>
             <Button
               type="submit"
               fullWidth
               variant="contained"
+              onClick={validateInputs}
             >
               Sign in
             </Button>

@@ -1,3 +1,4 @@
+import MainPage from "./mainPage"
 import SignIn from "./SignIn"
 import {Routes, Route} from "react-router-dom"
 
@@ -7,9 +8,9 @@ function App() {
   return (
     <>
       <Routes>
-        <Route/>
+        <Route path='/' element={<SignIn/>}/>
+        <Route path='/main' element={<MainPage/>}/>
       </Routes>
-      <SignIn/>
     </>
   )
 }
