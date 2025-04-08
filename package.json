@@ -9,6 +9,7 @@
     "express": "^4.21.2",
     "jfile": "^1.1.12",
     "jsonfile": "^6.1.0",
-    "mongoose": "^8.13.1"
+    "mongoose": "^8.13.1",
+    "react-router-dom": "^7.5.0"
   }
 }
