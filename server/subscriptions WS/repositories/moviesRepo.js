@@ -12,7 +12,7 @@ const getById = (id) => {//todo: see if i'm using all the functions
 
 // Get By APIid
 const getByAPIId = (apiId) => {//todo: see if i'm using all the functions
-  return Movie.findOne(apiId);
+  return Movie.findOne({apiId});
 };
 
 // Create
