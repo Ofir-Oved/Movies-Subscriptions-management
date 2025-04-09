@@ -9,7 +9,7 @@ const fetchAndStoreMembers = async () => {
         const {data: users} = await axios.get(USERS_URL);
 
         for (const user of users) {
-            const existingMember = await membersRepo.findByAPIId(user.id);
+            const existingMember = await membersRepo.getByAPIId(user.id);
             if (!existingMember) {
                 await membersRepo.addMember({ apiId: user.id, name: user.name, email: user.email, city: user.address.city });
             }

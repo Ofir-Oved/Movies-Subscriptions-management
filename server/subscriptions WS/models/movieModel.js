@@ -7,7 +7,7 @@ const movieSchema = new mongoose.Schema(
     name: { type: String, required: true },
     genres: [String],
     image: String,
-    premiered: date
+    premiered: Date
   },
   { versionKey: false }
 );

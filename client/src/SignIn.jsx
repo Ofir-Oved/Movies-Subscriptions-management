@@ -14,6 +14,8 @@ import { styled } from '@mui/material/styles';
 import AppTheme from './design/AppTheme';
 import { SitemarkIcon } from './design/CustomIcons';
 
+const USERS_URL = 'http://localhost:3000/users';
+
 const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
