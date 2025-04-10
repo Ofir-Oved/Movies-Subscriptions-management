@@ -89,7 +89,6 @@ export default function SignIn(props) {
     const {data: users} = await axios.get(USERS_URL);
 
     const user = users.find(user => user.userName === userName);
-    console.log(users);
 
     if (!user) {
       setUserNameError(true);
