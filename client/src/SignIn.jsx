@@ -13,8 +13,9 @@ import MuiCard from '@mui/material/Card';
 import { styled } from '@mui/material/styles';
 import AppTheme from './design/AppTheme';
 import { SitemarkIcon } from './design/CustomIcons';
+import axios from 'axios';
 
-const USERS_URL = 'http://localhost:3000/users';
+const USERS_URL = 'http://localhost:3000/users/login';
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
@@ -71,21 +72,26 @@ export default function SignIn(props) {
     navigate('/createAccount');
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const isValid = validateInputs(); 
+    const isValid = await validateInputs(); 
 
     if (isValid) {
       navigate('/main');
     }
   };
 
-  const validateInputs = () => {
+  const validateInputs = async () => {
 
     let isValid = true;
 
-    if (!userName) {//update************
+    const {data: users} = await axios.get(USERS_URL);
+
+    const user = users.find(user => user.userName === userName);
+    console.log(users);
+
+    if (!user) {
       setUserNameError(true);
       setUserNameErrorMessage('Username does not exist.');
       isValid = false;
@@ -94,7 +100,7 @@ export default function SignIn(props) {
       setUserNameErrorMessage('');
     }
 
-    if (!password) {//update************
+    if (user && user?.password != password) {
       setPasswordError(true);
       setPasswordErrorMessage('Password is incorrect.');
       isValid = false;

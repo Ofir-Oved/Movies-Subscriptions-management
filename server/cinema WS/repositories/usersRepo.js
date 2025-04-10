@@ -1,8 +1,8 @@
 const User = require('../models/userModel');
 
 // Get All
-const getAllUsers = (filters) => {//todo: see if filters relevant
-  return User.find(filters);
+const getAllUsers = () => {
+  return User.find();
 };
 
 // Get By ID

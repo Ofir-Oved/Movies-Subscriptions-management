@@ -3,13 +3,23 @@ const usersService = require('../services/usersService');
 
 const router = express.Router();
 
-// Entry point: http://localhost:3000/users - see if correct
+// Entry point: http://localhost:3000/users
 
 // Get All Users
 router.get('/', async (req, res) => {//todo: see if i'm using all the functions
   try {
     const filters = req.query;//see if relevant
     const users = await usersService.getAllUsers(filters);
+    res.json(users);
+  } catch (error) {
+    res.json(error);
+  }
+});
+
+// Get All Users login info
+router.get('/login', async (req, res) => {
+  try {
+    const users = await usersService.getUsersLoginInfo();
     res.json(users);
   } catch (error) {
     res.json(error);

@@ -21,6 +21,10 @@ const getAllUsers = async () => {//todo: see if filters relevant
     return merged;
 };
 
+const getUsersLoginInfo = () => {
+  return usersRepo.getAllUsers();
+};
+
 const getById = async (id) => {//todo: see if i'm using all the functions
     const usersData = await usersDataRepo.getUsers();
     const permissions = await permissionsRepo.getPermissions();
@@ -55,8 +59,9 @@ const deleteUser = (id) => {
 
 module.exports = {
   getAllUsers,
+  getUsersLoginInfo,
   getById,
   addUser,
   updateUser,
-  deleteUser,
+  deleteUser
 };
